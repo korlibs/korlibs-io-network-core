@@ -12,6 +12,7 @@ class JvmAsyncSocketTest {
     fun test() {
         // Skip in CI on windows --     java.net.SocketException: Network is down: bind
         if (System.getenv("CI") != null && Platform.isWindows) return
+        if (getJavaVersion() < 17) return
 
         runBlocking {
             val sockPath = "/tmp/test.sock"
@@ -31,5 +32,18 @@ class JvmAsyncSocketTest {
                 File(sockPath).delete()
             }
         }
+    }
+
+    private fun getJavaVersion(): Int {
+        var version = System.getProperty("java.version")
+        if (version.startsWith("1.")) {
+            version = version.substring(2, 3)
+        } else {
+            val dot = version.indexOf(".")
+            if (dot != -1) {
+                version = version.substring(0, dot)
+            }
+        }
+        return version.toInt()
     }
 }
