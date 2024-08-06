@@ -1,11 +1,6 @@
 package korlibs.io.socket
 
 import kotlinx.coroutines.*
-import java.net.ProtocolFamily
-import java.net.StandardProtocolFamily
-import java.net.UnixDomainSocketAddress
-import java.nio.channels.AsynchronousSocketChannel
-import java.nio.channels.SocketChannel
 
 actual suspend operator fun AsyncSocket.Companion.invoke(secure: Boolean): AsyncSocket {
     return JvmNioAsyncClient().let { if (secure) AsyncClientSSLProcessor(it) else it }
@@ -17,7 +12,7 @@ actual suspend operator fun AsyncServerSocket.Companion.invoke(port: Int, host: 
 }
 
 actual suspend fun AsyncSocket.Companion.unix(path: String): AsyncSocket = JvmAsyncSocket(withContext(Dispatchers.IO) {
-    val address = UnixDomainSocketAddress.of(path)
+    val address = UnixDomainSocketAddress_of(path)
     //println("[a]")
     SocketChannel_open(StandardProtocolFamily_UNIX).apply {
         //println("[b]")
