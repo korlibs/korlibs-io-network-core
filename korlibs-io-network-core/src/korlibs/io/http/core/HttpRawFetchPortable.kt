@@ -10,7 +10,7 @@ internal fun SocketHttpFetch(socketGen: suspend (Boolean) -> AsyncSocket = { Asy
             socket.connect(host, port)
             val buffered = BufferedAsyncInputStream(socket)
 
-            socket.write(computeHeader(method, path, host, headers).encodeToByteArray())
+            socket.write(computeHeader(method, if (path.isBlank()) "/" else path, host, headers).encodeToByteArray())
             body?.copyTo(socket)
 
             val firstLine = buffered.readLine()
