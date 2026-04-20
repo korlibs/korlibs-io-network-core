@@ -4,7 +4,7 @@ import korlibs.io.stream.*
 import korlibs.memory.*
 import korlibs.wasm.*
 import kotlinx.coroutines.*
-import org.khronos.webgl.*
+import org.khronos.webgl.ArrayBuffer
 import org.w3c.fetch.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException

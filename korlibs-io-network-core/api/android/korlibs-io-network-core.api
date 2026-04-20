@@ -1,6 +1,7 @@
 public abstract interface class korlibs/io/http/core/HttpFetch {
 	public static final field Companion Lkorlibs/io/http/core/HttpFetch$Companion;
 	public abstract fun fetch (Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;ZLjava/util/List;Lkorlibs/io/stream/AsyncInputStream;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun fetch$default (Lkorlibs/io/http/core/HttpFetch;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;ZLjava/util/List;Lkorlibs/io/stream/AsyncInputStream;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class korlibs/io/http/core/HttpFetch$Companion : korlibs/io/http/core/HttpFetch {
@@ -46,13 +47,13 @@ public final class korlibs/io/socket/AsyncClientSSLProcessor : korlibs/io/socket
 public abstract interface class korlibs/io/socket/AsyncServerSocket : korlibs/io/async/AsyncCloseable {
 	public static final field Companion Lkorlibs/io/socket/AsyncServerSocket$Companion;
 	public abstract fun accept (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun getBacklog ()I
 	public abstract fun getHost ()Ljava/lang/String;
 	public abstract fun getPort ()I
 	public abstract fun getRequestPort ()I
-	public abstract fun listen (Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun listenFlow (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listen (Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listenFlow (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class korlibs/io/socket/AsyncServerSocket$Companion {
@@ -69,7 +70,7 @@ public abstract interface class korlibs/io/socket/AsyncSocket : korlibs/io/strea
 	public static final field Companion Lkorlibs/io/socket/AsyncSocket$Companion;
 	public abstract fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun connect (Ljava/lang/String;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun getAddress ()Lkorlibs/io/socket/AsyncSocketAddress;
+	public fun getAddress ()Lkorlibs/io/socket/AsyncSocketAddress;
 	public abstract fun getConnected ()Z
 	public abstract fun read ([BIILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun write ([BIILkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -205,7 +206,9 @@ public abstract interface class korlibs/io/socket/SSLProcessor {
 	public abstract fun addEncryptedServerData ([BII)V
 	public abstract fun clientClose ()V
 	public abstract fun getDecryptedServerData ([BII)I
+	public static synthetic fun getDecryptedServerData$default (Lkorlibs/io/socket/SSLProcessor;[BIIILjava/lang/Object;)I
 	public abstract fun getEncryptedClientData ([BII)I
+	public static synthetic fun getEncryptedClientData$default (Lkorlibs/io/socket/SSLProcessor;[BIIILjava/lang/Object;)I
 	public abstract fun getNeedInput ()Z
 	public abstract fun getNeedSync ()Z
 	public abstract fun getStatus ()Ljava/lang/Object;
