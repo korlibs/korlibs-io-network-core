@@ -17,7 +17,12 @@ internal actual val defaultHttpFetch: HttpFetch = object : HttpFetch {
         }
         val url = "$scheme://$host:$port$path"
 
-        val result = jsGlobalThis.fetch(url, RequestInit(method = method, headers = headersJsObj, body = body?.readAll())).await()
+        val fetchInit = js("({})")
+        fetchInit["method"] = method
+        fetchInit["headers"] = headersJsObj
+        body?.readAll()?.let { fetchInit["body"] = it }
+
+        val result = jsGlobalThis.fetch(url, fetchInit.unsafeCast<RequestInit>()).await()
         val body = result.arrayBuffer().await().asInt8Array().unsafeCast<ByteArray>()
 
         val rheaders = result.headers
